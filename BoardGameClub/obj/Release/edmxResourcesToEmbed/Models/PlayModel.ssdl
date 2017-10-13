@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PlayModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLibrary">
+    <Key>
+      <PropertyRef Name="AspNetUsers_Id" />
+      <PropertyRef Name="Libraries_Id" />
+    </Key>
+    <Property Name="AspNetUsers_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Libraries_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="AspNetRoles_Id" />
+      <PropertyRef Name="AspNetUsers_Id" />
+    </Key>
+    <Property Name="AspNetRoles_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="AspNetUsers_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Department" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="BoardGames">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TotalPlays" Type="int" Nullable="false" />
+    <Property Name="BGGID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="C__MigrationHistory1">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Libraries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LibraryBoardGame">
+    <Key>
+      <PropertyRef Name="Libraries_Id" />
+      <PropertyRef Name="BoardGames_Id" />
+    </Key>
+    <Property Name="Libraries_Id" Type="int" Nullable="false" />
+    <Property Name="BoardGames_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Medals">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Player_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="PlayerPlaySession">
+    <Key>
+      <PropertyRef Name="Players_Id" />
+      <PropertyRef Name="PlaySessions_Id" />
+    </Key>
+    <Property Name="Players_Id" Type="int" Nullable="false" />
+    <Property Name="PlaySessions_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Players">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AspNetUser_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PlaySessions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DatePlayed" Type="datetime" Nullable="false" />
+    <Property Name="PlayTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="BoardGame_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AspNetUserLibrary_AspNetUser">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="AspNetUserLibrary" Type="Self.AspNetUserLibrary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLibrary">
+        <PropertyRef Name="AspNetUsers_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserLibrary_Library">
+    <End Role="Libraries" Type="Self.Libraries" Multiplicity="1" />
+    <End Role="AspNetUserLibrary" Type="Self.AspNetUserLibrary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Libraries">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLibrary">
+        <PropertyRef Name="Libraries_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserPlayer">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Players" Type="Self.Players" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Players">
+        <PropertyRef Name="AspNetUser_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserRoles_AspNetRole">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="AspNetRoles_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserRoles_AspNetUser">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="AspNetUsers_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BoardGamePlaySession">
+    <End Role="BoardGames" Type="Self.BoardGames" Multiplicity="1" />
+    <End Role="PlaySessions" Type="Self.PlaySessions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BoardGames">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlaySessions">
+        <PropertyRef Name="BoardGame_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LibraryBoardGame_BoardGame">
+    <End Role="BoardGames" Type="Self.BoardGames" Multiplicity="1" />
+    <End Role="LibraryBoardGame" Type="Self.LibraryBoardGame" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BoardGames">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LibraryBoardGame">
+        <PropertyRef Name="BoardGames_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LibraryBoardGame_Library">
+    <End Role="Libraries" Type="Self.Libraries" Multiplicity="1" />
+    <End Role="LibraryBoardGame" Type="Self.LibraryBoardGame" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Libraries">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LibraryBoardGame">
+        <PropertyRef Name="Libraries_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlayerMedal">
+    <End Role="Players" Type="Self.Players" Multiplicity="0..1" />
+    <End Role="Medals" Type="Self.Medals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Players">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Medals">
+        <PropertyRef Name="Player_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlayerPlaySession_Player">
+    <End Role="Players" Type="Self.Players" Multiplicity="1" />
+    <End Role="PlayerPlaySession" Type="Self.PlayerPlaySession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Players">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlayerPlaySession">
+        <PropertyRef Name="Players_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlayerPlaySession_PlaySession">
+    <End Role="PlaySessions" Type="Self.PlaySessions" Multiplicity="1" />
+    <End Role="PlayerPlaySession" Type="Self.PlayerPlaySession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlaySessions">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlayerPlaySession">
+        <PropertyRef Name="PlaySessions_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PlayModelStoreContainer">
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLibrary" EntityType="Self.AspNetUserLibrary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BoardGames" EntityType="Self.BoardGames" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="C__MigrationHistory1" EntityType="Self.C__MigrationHistory1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Libraries" EntityType="Self.Libraries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LibraryBoardGame" EntityType="Self.LibraryBoardGame" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Medals" EntityType="Self.Medals" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PlayerPlaySession" EntityType="Self.PlayerPlaySession" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PlaySessions" EntityType="Self.PlaySessions" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AspNetUserLibrary_AspNetUser" Association="Self.FK_AspNetUserLibrary_AspNetUser">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLibrary" EntitySet="AspNetUserLibrary" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserLibrary_Library" Association="Self.FK_AspNetUserLibrary_Library">
+      <End Role="Libraries" EntitySet="Libraries" />
+      <End Role="AspNetUserLibrary" EntitySet="AspNetUserLibrary" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserPlayer" Association="Self.FK_AspNetUserPlayer">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Players" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserRoles_AspNetRole" Association="Self.FK_AspNetUserRoles_AspNetRole">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserRoles_AspNetUser" Association="Self.FK_AspNetUserRoles_AspNetUser">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BoardGamePlaySession" Association="Self.FK_BoardGamePlaySession">
+      <End Role="BoardGames" EntitySet="BoardGames" />
+      <End Role="PlaySessions" EntitySet="PlaySessions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LibraryBoardGame_BoardGame" Association="Self.FK_LibraryBoardGame_BoardGame">
+      <End Role="BoardGames" EntitySet="BoardGames" />
+      <End Role="LibraryBoardGame" EntitySet="LibraryBoardGame" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LibraryBoardGame_Library" Association="Self.FK_LibraryBoardGame_Library">
+      <End Role="Libraries" EntitySet="Libraries" />
+      <End Role="LibraryBoardGame" EntitySet="LibraryBoardGame" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlayerMedal" Association="Self.FK_PlayerMedal">
+      <End Role="Players" EntitySet="Players" />
+      <End Role="Medals" EntitySet="Medals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlayerPlaySession_Player" Association="Self.FK_PlayerPlaySession_Player">
+      <End Role="Players" EntitySet="Players" />
+      <End Role="PlayerPlaySession" EntitySet="PlayerPlaySession" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlayerPlaySession_PlaySession" Association="Self.FK_PlayerPlaySession_PlaySession">
+      <End Role="PlaySessions" EntitySet="PlaySessions" />
+      <End Role="PlayerPlaySession" EntitySet="PlayerPlaySession" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="BoardGameClubModel.AspNetUserClaim" Width="1.5" PointX="4.875" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="BoardGameClubModel.AspNetUserLogin" Width="1.5" PointX="4.875" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BoardGameClubModel.AspNetUser" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoardGameClubModel.BoardGame" Width="1.5" PointX="10.625" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoardGameClubModel.BoardGame" Width="1.5" PointX="9.375" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BoardGameClubModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BoardGameClubModel.C__MigrationHistory1" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BoardGameClubModel.Library" Width="1.5" PointX="7" PointY="7.125" IsExpanded="true" />

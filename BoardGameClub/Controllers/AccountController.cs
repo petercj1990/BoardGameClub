@@ -8,8 +8,10 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Microsoft.Owin.Host.SystemWeb;
 using BoardGameClub.Models;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace BoardGameClub.Controllers
 {
@@ -24,7 +26,7 @@ namespace BoardGameClub.Controllers
         }
 
     
-    public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -75,9 +77,13 @@ namespace BoardGameClub.Controllers
                 return View(model);
             }
 
-      // This doesn't count login failures towards account lockout
-      // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            // This doesn't count login failures towards account lockout
+            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            ApplicationUser signedUser = UserManager.FindByEmail(model.Email);
+            var result = await SignInManager.PasswordSignInAsync(signedUser.UserName, model.Password, model.RememberMe, shouldLockout: false);
+            Debug.Write("im right here");
+            Debug.Write(result);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -157,18 +163,14 @@ namespace BoardGameClub.Controllers
             
             if (ModelState.IsValid)
             {
-                
-                
                 var user = new ApplicationUser { UserName = model.Name, Email = model.Email, Department = model.Department.ToString()};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    var player = new Player();
-                    player.Name = model.Name;
-                    player.AspNetUser = db.AspNetUsers.Find(user.Id);
+                    
+                    var player = new Player { Name = model.Name, AspNetUser_Id = user.Id};
                     db.Players.Add(player);
-
+                    db.SaveChanges();
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action(
                       "ConfirmEmail", "Account",

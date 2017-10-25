@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -45,24 +45,26 @@ namespace BoardGameClub
             // This is similar to the RememberMe option when you log in.
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
-            // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+      // Uncomment the following lines to enable logging in with third party login providers
+      //app.UseMicrosoftAccountAuthentication(
+      //    clientId: "",
+      //    clientSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+      //app.UseTwitterAuthentication(
+      //   consumerKey: "",
+      //   consumerSecret: "");
 
-            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            {
-                ClientId = "146893021676-vnm86g50mmhcto6cmp0uj2r52buhns5e.apps.googleusercontent.com",
-                ClientSecret = "Lni4Ld3XEHO8ryXAdL8n58tn"
-            });
-        }
+      //app.UseFacebookAuthentication(
+      //   appId: "",
+      //   appSecret: "");
+
+      app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+      {
+        ClientId = "146893021676-vnm86g50mmhcto6cmp0uj2r52buhns5e.apps.googleusercontent.com",
+        ClientSecret = "Lni4Ld3XEHO8ryXAdL8n58tn"
+      });
     }
+  }
 }

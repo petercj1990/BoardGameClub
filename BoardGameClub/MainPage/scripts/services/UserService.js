@@ -1,4 +1,4 @@
-BGCApp.factory('DataService',
+BGCApp.factory('PlayerService',
     ["$http",
         function ($http) {
 

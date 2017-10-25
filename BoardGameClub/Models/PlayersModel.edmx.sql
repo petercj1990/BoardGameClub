@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/13/2017 14:49:55
+-- Date Created: 10/19/2017 15:43:11
 -- Generated from EDMX file: C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\Models\PlayersModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [BoardGameClub];
+USE [bghq];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -17,20 +17,20 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_AspNetUserLibrary_AspNetUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AspNetUserLibrary] DROP CONSTRAINT [FK_AspNetUserLibrary_AspNetUser];
+IF OBJECT_ID(N'[dbo].[FK_AspNetUserLibrary_AspNetUsers]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AspNetUserLibrary] DROP CONSTRAINT [FK_AspNetUserLibrary_AspNetUsers];
 GO
-IF OBJECT_ID(N'[dbo].[FK_AspNetUserLibrary_Library]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AspNetUserLibrary] DROP CONSTRAINT [FK_AspNetUserLibrary_Library];
+IF OBJECT_ID(N'[dbo].[FK_AspNetUserLibrary_Libraries]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AspNetUserLibrary] DROP CONSTRAINT [FK_AspNetUserLibrary_Libraries];
 GO
 IF OBJECT_ID(N'[dbo].[FK_AspNetUserPlayer]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Players] DROP CONSTRAINT [FK_AspNetUserPlayer];
 GO
-IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetRole]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetRole];
+IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetRoles]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetRoles];
 GO
-IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetUser];
+IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetUsers]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetUsers];
 GO
 IF OBJECT_ID(N'[dbo].[FK_BoardGamePlaySession]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PlaySessions] DROP CONSTRAINT [FK_BoardGamePlaySession];
@@ -41,20 +41,20 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AspNetUserLogins] DROP CONSTRAINT [FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId];
 GO
-IF OBJECT_ID(N'[dbo].[FK_LibraryBoardGame_BoardGame]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[LibraryBoardGame] DROP CONSTRAINT [FK_LibraryBoardGame_BoardGame];
+IF OBJECT_ID(N'[dbo].[FK_LibraryBoardGame_BoardGames]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LibraryBoardGame] DROP CONSTRAINT [FK_LibraryBoardGame_BoardGames];
 GO
-IF OBJECT_ID(N'[dbo].[FK_LibraryBoardGame_Library]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[LibraryBoardGame] DROP CONSTRAINT [FK_LibraryBoardGame_Library];
+IF OBJECT_ID(N'[dbo].[FK_LibraryBoardGame_Libraries]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LibraryBoardGame] DROP CONSTRAINT [FK_LibraryBoardGame_Libraries];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PlayerMedal]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Medals] DROP CONSTRAINT [FK_PlayerMedal];
 GO
-IF OBJECT_ID(N'[dbo].[FK_PlayerPlaySession_Player]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PlayerPlaySession] DROP CONSTRAINT [FK_PlayerPlaySession_Player];
+IF OBJECT_ID(N'[dbo].[FK_PlayerPlaySession_Players]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PlayerPlaySession] DROP CONSTRAINT [FK_PlayerPlaySession_Players];
 GO
-IF OBJECT_ID(N'[dbo].[FK_PlayerPlaySession_PlaySession]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PlayerPlaySession] DROP CONSTRAINT [FK_PlayerPlaySession_PlaySession];
+IF OBJECT_ID(N'[dbo].[FK_PlayerPlaySession_PlaySessions]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PlayerPlaySession] DROP CONSTRAINT [FK_PlayerPlaySession_PlaySessions];
 GO
 
 -- --------------------------------------------------
@@ -82,12 +82,6 @@ GO
 IF OBJECT_ID(N'[dbo].[BoardGames]', 'U') IS NOT NULL
     DROP TABLE [dbo].[BoardGames];
 GO
-IF OBJECT_ID(N'[dbo].[C__MigrationHistory]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[C__MigrationHistory];
-GO
-IF OBJECT_ID(N'[dbo].[C__MigrationHistory1]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[C__MigrationHistory1];
-GO
 IF OBJECT_ID(N'[dbo].[Libraries]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Libraries];
 GO
@@ -105,9 +99,6 @@ IF OBJECT_ID(N'[dbo].[Players]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[PlaySessions]', 'U') IS NOT NULL
     DROP TABLE [dbo].[PlaySessions];
-GO
-IF OBJECT_ID(N'[BoardGameClubModelStoreContainer].[database_firewall_rules]', 'U') IS NOT NULL
-    DROP TABLE [BoardGameClubModelStoreContainer].[database_firewall_rules];
 GO
 
 -- --------------------------------------------------
@@ -165,24 +156,6 @@ CREATE TABLE [dbo].[BoardGames] (
 );
 GO
 
--- Creating table 'C__MigrationHistory'
-CREATE TABLE [dbo].[C__MigrationHistory] (
-    [MigrationId] nvarchar(150)  NOT NULL,
-    [ContextKey] nvarchar(300)  NOT NULL,
-    [Model] varbinary(max)  NOT NULL,
-    [ProductVersion] nvarchar(32)  NOT NULL
-);
-GO
-
--- Creating table 'C__MigrationHistory1'
-CREATE TABLE [dbo].[C__MigrationHistory1] (
-    [MigrationId] nvarchar(150)  NOT NULL,
-    [ContextKey] nvarchar(300)  NOT NULL,
-    [Model] varbinary(max)  NOT NULL,
-    [ProductVersion] nvarchar(32)  NOT NULL
-);
-GO
-
 -- Creating table 'Libraries'
 CREATE TABLE [dbo].[Libraries] (
     [Id] int IDENTITY(1,1) NOT NULL
@@ -214,28 +187,10 @@ CREATE TABLE [dbo].[PlaySessions] (
 );
 GO
 
--- Creating table 'database_firewall_rules'
-CREATE TABLE [dbo].[database_firewall_rules] (
-    [id] int IDENTITY(1,1) NOT NULL,
-    [name] nvarchar(128)  NOT NULL,
-    [start_ip_address] varchar(45)  NOT NULL,
-    [end_ip_address] varchar(45)  NOT NULL,
-    [create_date] datetime  NOT NULL,
-    [modify_date] datetime  NOT NULL
-);
-GO
-
 -- Creating table 'AspNetUserLibrary'
 CREATE TABLE [dbo].[AspNetUserLibrary] (
     [AspNetUsers_Id] nvarchar(128)  NOT NULL,
     [Libraries_Id] int  NOT NULL
-);
-GO
-
--- Creating table 'AspNetUserRoles'
-CREATE TABLE [dbo].[AspNetUserRoles] (
-    [AspNetRoles_Id] nvarchar(128)  NOT NULL,
-    [AspNetUsers_Id] nvarchar(128)  NOT NULL
 );
 GO
 
@@ -250,6 +205,13 @@ GO
 CREATE TABLE [dbo].[PlayerPlaySession] (
     [Players_Id] int  NOT NULL,
     [PlaySessions_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'AspNetUserRoles1'
+CREATE TABLE [dbo].[AspNetUserRoles1] (
+    [AspNetUserRoles1_AspNetUser_Id] nvarchar(128)  NOT NULL,
+    [AspNetUserRoles1_AspNetRole_Id] nvarchar(128)  NOT NULL
 );
 GO
 
@@ -269,10 +231,10 @@ ADD CONSTRAINT [PK_AspNetUserClaims]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [LoginProvider], [ProviderKey], [UserId] in table 'AspNetUserLogins'
+-- Creating primary key on [UserId], [LoginProvider], [ProviderKey] in table 'AspNetUserLogins'
 ALTER TABLE [dbo].[AspNetUserLogins]
 ADD CONSTRAINT [PK_AspNetUserLogins]
-    PRIMARY KEY CLUSTERED ([LoginProvider], [ProviderKey], [UserId] ASC);
+    PRIMARY KEY CLUSTERED ([UserId], [LoginProvider], [ProviderKey] ASC);
 GO
 
 -- Creating primary key on [Id] in table 'AspNetUsers'
@@ -285,18 +247,6 @@ GO
 ALTER TABLE [dbo].[BoardGames]
 ADD CONSTRAINT [PK_BoardGames]
     PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [MigrationId], [ContextKey] in table 'C__MigrationHistory'
-ALTER TABLE [dbo].[C__MigrationHistory]
-ADD CONSTRAINT [PK_C__MigrationHistory]
-    PRIMARY KEY CLUSTERED ([MigrationId], [ContextKey] ASC);
-GO
-
--- Creating primary key on [MigrationId], [ContextKey] in table 'C__MigrationHistory1'
-ALTER TABLE [dbo].[C__MigrationHistory1]
-ADD CONSTRAINT [PK_C__MigrationHistory1]
-    PRIMARY KEY CLUSTERED ([MigrationId], [ContextKey] ASC);
 GO
 
 -- Creating primary key on [Id] in table 'Libraries'
@@ -323,22 +273,10 @@ ADD CONSTRAINT [PK_PlaySessions]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [id], [name], [start_ip_address], [end_ip_address], [create_date], [modify_date] in table 'database_firewall_rules'
-ALTER TABLE [dbo].[database_firewall_rules]
-ADD CONSTRAINT [PK_database_firewall_rules]
-    PRIMARY KEY CLUSTERED ([id], [name], [start_ip_address], [end_ip_address], [create_date], [modify_date] ASC);
-GO
-
 -- Creating primary key on [AspNetUsers_Id], [Libraries_Id] in table 'AspNetUserLibrary'
 ALTER TABLE [dbo].[AspNetUserLibrary]
 ADD CONSTRAINT [PK_AspNetUserLibrary]
     PRIMARY KEY CLUSTERED ([AspNetUsers_Id], [Libraries_Id] ASC);
-GO
-
--- Creating primary key on [AspNetRoles_Id], [AspNetUsers_Id] in table 'AspNetUserRoles'
-ALTER TABLE [dbo].[AspNetUserRoles]
-ADD CONSTRAINT [PK_AspNetUserRoles]
-    PRIMARY KEY CLUSTERED ([AspNetRoles_Id], [AspNetUsers_Id] ASC);
 GO
 
 -- Creating primary key on [BoardGames_Id], [Libraries_Id] in table 'LibraryBoardGame'
@@ -351,6 +289,12 @@ GO
 ALTER TABLE [dbo].[PlayerPlaySession]
 ADD CONSTRAINT [PK_PlayerPlaySession]
     PRIMARY KEY CLUSTERED ([Players_Id], [PlaySessions_Id] ASC);
+GO
+
+-- Creating primary key on [AspNetUserRoles1_AspNetUser_Id], [AspNetUserRoles1_AspNetRole_Id] in table 'AspNetUserRoles1'
+ALTER TABLE [dbo].[AspNetUserRoles1]
+ADD CONSTRAINT [PK_AspNetUserRoles1]
+    PRIMARY KEY CLUSTERED ([AspNetUserRoles1_AspNetUser_Id], [AspNetUserRoles1_AspNetRole_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -379,12 +323,6 @@ ADD CONSTRAINT [FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId]
     REFERENCES [dbo].[AspNetUsers]
         ([Id])
     ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId'
-CREATE INDEX [IX_FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId]
-ON [dbo].[AspNetUserLogins]
-    ([UserId]);
 GO
 
 -- Creating foreign key on [AspNetUser_Id] in table 'Players'
@@ -456,30 +394,6 @@ ON [dbo].[AspNetUserLibrary]
     ([Libraries_Id]);
 GO
 
--- Creating foreign key on [AspNetRoles_Id] in table 'AspNetUserRoles'
-ALTER TABLE [dbo].[AspNetUserRoles]
-ADD CONSTRAINT [FK_AspNetUserRoles_AspNetRoles]
-    FOREIGN KEY ([AspNetRoles_Id])
-    REFERENCES [dbo].[AspNetRoles]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [AspNetUsers_Id] in table 'AspNetUserRoles'
-ALTER TABLE [dbo].[AspNetUserRoles]
-ADD CONSTRAINT [FK_AspNetUserRoles_AspNetUsers]
-    FOREIGN KEY ([AspNetUsers_Id])
-    REFERENCES [dbo].[AspNetUsers]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_AspNetUserRoles_AspNetUsers'
-CREATE INDEX [IX_FK_AspNetUserRoles_AspNetUsers]
-ON [dbo].[AspNetUserRoles]
-    ([AspNetUsers_Id]);
-GO
-
 -- Creating foreign key on [BoardGames_Id] in table 'LibraryBoardGame'
 ALTER TABLE [dbo].[LibraryBoardGame]
 ADD CONSTRAINT [FK_LibraryBoardGame_BoardGames]
@@ -526,6 +440,30 @@ GO
 CREATE INDEX [IX_FK_PlayerPlaySession_PlaySessions]
 ON [dbo].[PlayerPlaySession]
     ([PlaySessions_Id]);
+GO
+
+-- Creating foreign key on [AspNetUserRoles1_AspNetUser_Id] in table 'AspNetUserRoles1'
+ALTER TABLE [dbo].[AspNetUserRoles1]
+ADD CONSTRAINT [FK_AspNetUserRoles1_AspNetRole]
+    FOREIGN KEY ([AspNetUserRoles1_AspNetUser_Id])
+    REFERENCES [dbo].[AspNetRoles]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [AspNetUserRoles1_AspNetRole_Id] in table 'AspNetUserRoles1'
+ALTER TABLE [dbo].[AspNetUserRoles1]
+ADD CONSTRAINT [FK_AspNetUserRoles1_AspNetUser]
+    FOREIGN KEY ([AspNetUserRoles1_AspNetRole_Id])
+    REFERENCES [dbo].[AspNetUsers]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_AspNetUserRoles1_AspNetUser'
+CREATE INDEX [IX_FK_AspNetUserRoles1_AspNetUser]
+ON [dbo].[AspNetUserRoles1]
+    ([AspNetUserRoles1_AspNetRole_Id]);
 GO
 
 -- --------------------------------------------------

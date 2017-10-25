@@ -41,6 +41,7 @@ namespace BoardGameClub
                       .Include("~/Profile/PlayerApp.js")
                       .Include("~/Profile/scripts/controllers/about.js")
                       .Include("~/Profile/scripts/controllers/Player.js")
+                      .Include("~/Profile/scripts/controllers/boardgameModal.js")
                       .Include("~/Profile/scripts/services/DataService.js")
                       .Include("~/Profile/scripts/services/UserService.js")
                 );

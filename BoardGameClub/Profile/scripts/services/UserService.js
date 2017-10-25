@@ -1,4 +1,4 @@
-PlayerApp.factory('DataService',
+PlayerApp.factory('UserService',
     ["$http",
         function ($http) {
 

@@ -30,12 +30,9 @@ namespace BoardGameClub.Models
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<BoardGame> BoardGames { get; set; }
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
-        public virtual DbSet<C__MigrationHistory1> C__MigrationHistory1 { get; set; }
         public virtual DbSet<Library> Libraries { get; set; }
         public virtual DbSet<Medal> Medals { get; set; }
         public virtual DbSet<Player> Players { get; set; }
         public virtual DbSet<PlaySession> PlaySessions { get; set; }
-        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
     }
 }

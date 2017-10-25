@@ -6,7 +6,6 @@
     </Key>
     <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
   </EntityType>
   <EntityType Name="AspNetUserClaim">
     <Key>
@@ -20,9 +19,9 @@
   </EntityType>
   <EntityType Name="AspNetUserLogin">
     <Key>
+      <PropertyRef Name="UserId" />
       <PropertyRef Name="LoginProvider" />
       <PropertyRef Name="ProviderKey" />
-      <PropertyRef Name="UserId" />
     </Key>
     <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
@@ -50,7 +49,6 @@
     <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
     <NavigationProperty Name="Players" Relationship="Self.FK_AspNetUserPlayer" FromRole="AspNetUsers" ToRole="Players" />
     <NavigationProperty Name="Libraries" Relationship="Self.AspNetUserLibrary" FromRole="AspNetUsers" ToRole="Libraries" />
-    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
   </EntityType>
   <EntityType Name="BoardGame">
     <Key>
@@ -62,26 +60,6 @@
     <Property Name="BGGID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="PlaySessions" Relationship="Self.FK_BoardGamePlaySession" FromRole="BoardGames" ToRole="PlaySessions" />
     <NavigationProperty Name="Libraries" Relationship="Self.LibraryBoardGame" FromRole="BoardGames" ToRole="Libraries" />
-  </EntityType>
-  <EntityType Name="C__MigrationHistory">
-    <Key>
-      <PropertyRef Name="MigrationId" />
-      <PropertyRef Name="ContextKey" />
-    </Key>
-    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
-  </EntityType>
-  <EntityType Name="C__MigrationHistory1">
-    <Key>
-      <PropertyRef Name="MigrationId" />
-      <PropertyRef Name="ContextKey" />
-    </Key>
-    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
   <EntityType Name="Library">
     <Key>
@@ -121,22 +99,6 @@
     <Property Name="BoardGame_Id" Type="Int32" Nullable="false" />
     <NavigationProperty Name="BoardGame" Relationship="Self.FK_BoardGamePlaySession" FromRole="PlaySessions" ToRole="BoardGames" />
     <NavigationProperty Name="Players" Relationship="Self.PlayerPlaySession" FromRole="PlaySessions" ToRole="Players" />
-  </EntityType>
-  <EntityType Name="database_firewall_rules">
-    <Key>
-      <PropertyRef Name="id" />
-      <PropertyRef Name="name" />
-      <PropertyRef Name="start_ip_address" />
-      <PropertyRef Name="end_ip_address" />
-      <PropertyRef Name="create_date" />
-      <PropertyRef Name="modify_date" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -206,10 +168,6 @@
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
     <End Role="Libraries" Type="Self.Library" Multiplicity="*" />
   </Association>
-  <Association Name="AspNetUserRoles">
-    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
-    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
-  </Association>
   <Association Name="LibraryBoardGame">
     <End Role="BoardGames" Type="Self.BoardGame" Multiplicity="*" />
     <End Role="Libraries" Type="Self.Library" Multiplicity="*" />
@@ -224,13 +182,10 @@
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
     <EntitySet Name="BoardGames" EntityType="Self.BoardGame" />
-    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
-    <EntitySet Name="C__MigrationHistory1" EntityType="Self.C__MigrationHistory1" />
     <EntitySet Name="Libraries" EntityType="Self.Library" />
     <EntitySet Name="Medals" EntityType="Self.Medal" />
     <EntitySet Name="Players" EntityType="Self.Player" />
     <EntitySet Name="PlaySessions" EntityType="Self.PlaySession" />
-    <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -254,10 +209,6 @@
     <AssociationSet Name="AspNetUserLibrary" Association="Self.AspNetUserLibrary">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="Libraries" EntitySet="Libraries" />
-    </AssociationSet>
-    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
-      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
     <AssociationSet Name="LibraryBoardGame" Association="Self.LibraryBoardGame">
       <End Role="BoardGames" EntitySet="BoardGames" />

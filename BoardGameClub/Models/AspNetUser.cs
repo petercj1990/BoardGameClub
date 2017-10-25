@@ -21,7 +21,6 @@ namespace BoardGameClub.Models
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
             this.Players = new HashSet<Player>();
             this.Libraries = new HashSet<Library>();
-            this.AspNetRoles = new HashSet<AspNetRole>();
         }
     
         public string Id { get; set; }
@@ -46,7 +45,5 @@ namespace BoardGameClub.Models
         public virtual ICollection<Player> Players { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Library> Libraries { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
     }
 }

@@ -7,9 +7,12 @@ PlayerApp.config(
                 templateUrl: "../Profile/views/playerView.html",
                 controller: "PlayerCtrl"
             })
-            .when("/about", {
-                templateUrl: "../Profile/views/about.html",
-                controller: "About2Ctrl"
+            .when("/:id", {
+                templateUrl: "../Profile/views/playerView.html",
+                controller: "PlayerCtrl"
+            })
+            .otherwise({
+                redirectTo: "/home"
             });
         
     //$locationProvider

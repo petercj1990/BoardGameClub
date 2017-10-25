@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 .\BoardGameClub\Web.config
 .\BoardGameClub\AppSecrets.config
 BoardGameClub/Web.config
+=======
+\BoardGameClub\Web.config
+\BoardGameClub\AppSecrets.config
+>>>>>>> c13403e346df3ac34dc9c029069b78dd026c33a0

@@ -12,6 +12,7 @@ using Microsoft.Owin.Host.SystemWeb;
 using BoardGameClub.Models;
 using System.Collections.Generic;
 using System.Diagnostics;
+using BoardGameClubEntities;
 
 namespace BoardGameClub.Controllers
 {
@@ -21,6 +22,7 @@ namespace BoardGameClub.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        private GameContext db = new GameContext();
         public AccountController()
         {
         }
@@ -143,16 +145,14 @@ namespace BoardGameClub.Controllers
             }
         }
 
-    
-
-    //
-    // GET: /Account/Register
-    [AllowAnonymous]
+        //
+        // GET: /Account/Register
+        [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
         }
-        private ApplicationDbContext db = ApplicationDbContext.Create();
+        
         //
         // POST: /Account/Register
         [HttpPost]
@@ -403,12 +403,17 @@ namespace BoardGameClub.Controllers
                     return View("ExternalLoginFailure");
                 }
                 var user = new ApplicationUser {
-                    UserName = model.Email,
-                    Email = model.Email
+                  UserName = model.Name,
+                  Email = model.Email,
+                  Department = model.Department.ToString(),
+                  EmailConfirmed = true
                 };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
+                    var player = new Player { Name = model.Name, AspNetUser_Id = user.Id };
+                    db.Players.Add(player);
+                    db.SaveChanges();
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {

@@ -147,6 +147,7 @@ C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Xml.Xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Xml.XPath.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Xml.XPath.XDocument.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Antlr3.Runtime.dll
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\BoardGameClubEntities.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\EntityFramework.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\EntityFramework.SqlServer.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.AI.Agent.Intercept.dll
@@ -172,6 +173,7 @@ C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Exte
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Extensions.Options.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Extensions.Primitives.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Net.Http.Headers.dll
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Owin.Cors.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Owin.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Owin.Host.SystemWeb.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Owin.Security.Cookies.dll
@@ -202,6 +204,8 @@ C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Web.Web
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Web.WebPages.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Web.WebPages.Razor.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\WebGrease.dll
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\BoardGameClubEntities.pdb
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\BoardGameClubEntities.dll.config
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Antlr3.Runtime.pdb
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.AI.DependencyCollector.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.AI.ServerTelemetryChannel.xml
@@ -222,6 +226,7 @@ C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Exte
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Extensions.Primitives.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Net.Http.Headers.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Owin.xml
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Owin.Cors.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Owin.Security.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Owin.Security.Cookies.xml
@@ -255,9 +260,7 @@ C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\EntityFramewor
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.AspNet.Identity.Owin.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\obj\Release\BoardGameClub.csprojResolveAssemblyReference.cache
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\obj\Release\BoardGameClub.csproj.CoreCompileInputs.cache
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\obj\Release\BoardGameClub.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\obj\Release\BoardGameClub.pdb
-C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\obj\Release\BoardGameClub.csprojResolveAssemblyReference.cache
-C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Owin.Cors.dll
-C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Owin.Cors.xml

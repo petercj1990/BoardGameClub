@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="BoardGameClubModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure">
+<Schema Namespace="BoardGameClubModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="AspNetRoles">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" MaxLength="128" Type="nvarchar" />
-    <Property Name="Name" Nullable="false" MaxLength="256" Type="nvarchar" />
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
   </EntityType>
   <EntityType Name="AspNetUserClaims">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="UserId" Nullable="false" MaxLength="128" Type="nvarchar" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="ClaimType" Type="nvarchar(max)" />
     <Property Name="ClaimValue" Type="nvarchar(max)" />
   </EntityType>
@@ -21,8 +21,8 @@
       <PropertyRef Name="AspNetUsers_Id" />
       <PropertyRef Name="Libraries_Id" />
     </Key>
-    <Property Name="AspNetUsers_Id" Nullable="false" MaxLength="128" Type="nvarchar" />
-    <Property Name="Libraries_Id" Nullable="false" Type="int" />
+    <Property Name="AspNetUsers_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Libraries_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="AspNetUserLogins">
     <Key>
@@ -30,57 +30,65 @@
       <PropertyRef Name="ProviderKey" />
       <PropertyRef Name="UserId" />
     </Key>
-    <Property Name="LoginProvider" Nullable="false" MaxLength="128" Type="nvarchar" />
-    <Property Name="ProviderKey" Nullable="false" MaxLength="128" Type="nvarchar" />
-    <Property Name="UserId" Nullable="false" MaxLength="128" Type="nvarchar" />
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
   </EntityType>
   <EntityType Name="AspNetUsers">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" MaxLength="128" Type="nvarchar" />
-    <Property Name="Email" MaxLength="256" Type="nvarchar" />
-    <Property Name="EmailConfirmed" Nullable="false" Type="bit" />
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
     <Property Name="PasswordHash" Type="nvarchar(max)" />
     <Property Name="SecurityStamp" Type="nvarchar(max)" />
     <Property Name="PhoneNumber" Type="nvarchar(max)" />
-    <Property Name="PhoneNumberConfirmed" Nullable="false" Type="bit" />
-    <Property Name="TwoFactorEnabled" Nullable="false" Type="bit" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
     <Property Name="LockoutEndDateUtc" Type="datetime" />
-    <Property Name="LockoutEnabled" Nullable="false" Type="bit" />
-    <Property Name="AccessFailedCount" Nullable="false" Type="int" />
-    <Property Name="UserName" Nullable="false" MaxLength="256" Type="nvarchar" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
     <Property Name="Department" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="BoardGames">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="Name" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="TotalPlays" Nullable="false" Type="int" />
-    <Property Name="BGGID" Nullable="false" Type="int" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TotalPlays" Type="int" Nullable="false" />
+    <Property Name="BGGID" Type="int" Nullable="false" />
+    <Property Name="MinPlayer" Type="int" />
+    <Property Name="MaxPlayer" Type="int" />
+    <Property Name="PlayingTime" Type="int" />
+    <Property Name="Image" Type="varchar" MaxLength="512" />
+    <Property Name="Description" Type="text" />
+    <Property Name="Category" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Libraries">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userId" Type="nvarchar" MaxLength="128" />
+    <Property Name="bgId" Type="int" />
   </EntityType>
   <EntityType Name="LibraryBoardGame">
     <Key>
       <PropertyRef Name="BoardGames_Id" />
       <PropertyRef Name="Libraries_Id" />
     </Key>
-    <Property Name="BoardGames_Id" Nullable="false" Type="int" />
-    <Property Name="Libraries_Id" Nullable="false" Type="int" />
+    <Property Name="BoardGames_Id" Type="int" Nullable="false" />
+    <Property Name="Libraries_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Medals">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="Name" Nullable="false" Type="nvarchar(max)" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Player_Id" Type="int" />
   </EntityType>
   <EntityType Name="PlayerPlaySession">
@@ -88,29 +96,29 @@
       <PropertyRef Name="Players_Id" />
       <PropertyRef Name="PlaySessions_Id" />
     </Key>
-    <Property Name="Players_Id" Nullable="false" Type="int" />
-    <Property Name="PlaySessions_Id" Nullable="false" Type="int" />
+    <Property Name="Players_Id" Type="int" Nullable="false" />
+    <Property Name="PlaySessions_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Players">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="Name" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="AspNetUser_Id" Nullable="false" MaxLength="128" Type="nvarchar" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AspNetUser_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
   </EntityType>
   <EntityType Name="PlaySessions">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="DatePlayed" Nullable="false" Type="datetime" />
-    <Property Name="PlayTime" Nullable="false" Precision="7" Type="time" />
-    <Property Name="BoardGame_Id" Nullable="false" Type="int" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DatePlayed" Type="datetime" Nullable="false" />
+    <Property Name="PlayTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="BoardGame_Id" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="FK_AspNetUserLibrary_AspNetUsers">
-    <End Type="Self.AspNetUsers" Multiplicity="1" Role="AspNetUsers" />
-    <End Type="Self.AspNetUserLibrary" Multiplicity="*" Role="AspNetUserLibrary" />
+  <Association Name="FK_AspNetUserLibrary_AspNetUser">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="AspNetUserLibrary" Type="Self.AspNetUserLibrary" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
         <PropertyRef Name="Id" />
@@ -120,9 +128,23 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_AspNetUserLibrary_AspNetUsers' has been omitted from the storage model. Column 'AspNetUsers_Id' of table 'BoardGameClubModel.Store.AspNetUserLibrary' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
+        <Association Name="FK_AspNetUserLibrary_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="AspNetUserLibrary" Type="Self.AspNetUserLibrary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLibrary">
+              <PropertyRef Name="AspNetUsers_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>-->
   <Association Name="FK_AspNetUserLibrary_Libraries">
-    <End Type="Self.Libraries" Multiplicity="1" Role="Libraries" />
-    <End Type="Self.AspNetUserLibrary" Multiplicity="*" Role="AspNetUserLibrary" />
+    <End Role="Libraries" Type="Self.Libraries" Multiplicity="1" />
+    <End Role="AspNetUserLibrary" Type="Self.AspNetUserLibrary" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Libraries">
         <PropertyRef Name="Id" />
@@ -132,9 +154,23 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_AspNetUserLibrary_Library' has been omitted from the storage model. Column 'Libraries_Id' of table 'BoardGameClubModel.Store.AspNetUserLibrary' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
+        <Association Name="FK_AspNetUserLibrary_Library">
+          <End Role="Libraries" Type="Self.Libraries" Multiplicity="1" />
+          <End Role="AspNetUserLibrary" Type="Self.AspNetUserLibrary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Libraries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLibrary">
+              <PropertyRef Name="Libraries_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>-->
   <Association Name="FK_AspNetUserPlayer">
-    <End Type="Self.AspNetUsers" Multiplicity="1" Role="AspNetUsers" />
-    <End Type="Self.Players" Multiplicity="*" Role="Players" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Players" Type="Self.Players" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
         <PropertyRef Name="Id" />
@@ -145,8 +181,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_BoardGamePlaySession">
-    <End Type="Self.BoardGames" Multiplicity="1" Role="BoardGames" />
-    <End Type="Self.PlaySessions" Multiplicity="*" Role="PlaySessions" />
+    <End Role="BoardGames" Type="Self.BoardGames" Multiplicity="1" />
+    <End Role="PlaySessions" Type="Self.PlaySessions" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="BoardGames">
         <PropertyRef Name="Id" />
@@ -157,10 +193,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-    <End Type="Self.AspNetUsers" Multiplicity="1" Role="AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Type="Self.AspNetUserClaims" Multiplicity="*" Role="AspNetUserClaims" />
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
         <PropertyRef Name="Id" />
@@ -171,10 +207,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-    <End Type="Self.AspNetUsers" Multiplicity="1" Role="AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Type="Self.AspNetUserLogins" Multiplicity="*" Role="AspNetUserLogins" />
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
         <PropertyRef Name="Id" />
@@ -184,9 +220,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_LibraryBoardGame_BoardGames">
-    <End Type="Self.BoardGames" Multiplicity="1" Role="BoardGames" />
-    <End Type="Self.LibraryBoardGame" Multiplicity="*" Role="LibraryBoardGame" />
+  <Association Name="FK_LibraryBoardGame_BoardGame">
+    <End Role="BoardGames" Type="Self.BoardGames" Multiplicity="1" />
+    <End Role="LibraryBoardGame" Type="Self.LibraryBoardGame" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="BoardGames">
         <PropertyRef Name="Id" />
@@ -197,8 +233,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_LibraryBoardGame_Libraries">
-    <End Type="Self.Libraries" Multiplicity="1" Role="Libraries" />
-    <End Type="Self.LibraryBoardGame" Multiplicity="*" Role="LibraryBoardGame" />
+    <End Role="Libraries" Type="Self.Libraries" Multiplicity="1" />
+    <End Role="LibraryBoardGame" Type="Self.LibraryBoardGame" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Libraries">
         <PropertyRef Name="Id" />
@@ -208,9 +244,23 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_LibraryBoardGame_Library' has been omitted from the storage model. Column 'Libraries_Id' of table 'BoardGameClubModel.Store.LibraryBoardGame' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
+        <Association Name="FK_LibraryBoardGame_Library">
+          <End Role="Libraries" Type="Self.Libraries" Multiplicity="1" />
+          <End Role="LibraryBoardGame" Type="Self.LibraryBoardGame" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Libraries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LibraryBoardGame">
+              <PropertyRef Name="Libraries_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>-->
   <Association Name="FK_PlayerMedal">
-    <End Type="Self.Players" Multiplicity="0..1" Role="Players" />
-    <End Type="Self.Medals" Multiplicity="*" Role="Medals" />
+    <End Role="Players" Type="Self.Players" Multiplicity="0..1" />
+    <End Role="Medals" Type="Self.Medals" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Players">
         <PropertyRef Name="Id" />
@@ -221,8 +271,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PlayerPlaySession_Players">
-    <End Type="Self.Players" Multiplicity="1" Role="Players" />
-    <End Type="Self.PlayerPlaySession" Multiplicity="*" Role="PlayerPlaySession" />
+    <End Role="Players" Type="Self.Players" Multiplicity="1" />
+    <End Role="PlayerPlaySession" Type="Self.PlayerPlaySession" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Players">
         <PropertyRef Name="Id" />
@@ -233,8 +283,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PlayerPlaySession_PlaySessions">
-    <End Type="Self.PlaySessions" Multiplicity="1" Role="PlaySessions" />
-    <End Type="Self.PlayerPlaySession" Multiplicity="*" Role="PlayerPlaySession" />
+    <End Role="PlaySessions" Type="Self.PlaySessions" Multiplicity="1" />
+    <End Role="PlayerPlaySession" Type="Self.PlayerPlaySession" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PlaySessions">
         <PropertyRef Name="Id" />
@@ -257,49 +307,49 @@
     <EntitySet Name="PlayerPlaySession" EntityType="Self.PlayerPlaySession" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PlaySessions" EntityType="Self.PlaySessions" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_AspNetUserLibrary_AspNetUsers" Association="Self.FK_AspNetUserLibrary_AspNetUsers">
-      <End EntitySet="AspNetUsers" Role="AspNetUsers" />
-      <End EntitySet="AspNetUserLibrary" Role="AspNetUserLibrary" />
+    <AssociationSet Name="FK_AspNetUserLibrary_AspNetUser" Association="Self.FK_AspNetUserLibrary_AspNetUser">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLibrary" EntitySet="AspNetUserLibrary" />
     </AssociationSet>
     <AssociationSet Name="FK_AspNetUserLibrary_Libraries" Association="Self.FK_AspNetUserLibrary_Libraries">
-      <End EntitySet="Libraries" Role="Libraries" />
-      <End EntitySet="AspNetUserLibrary" Role="AspNetUserLibrary" />
+      <End Role="Libraries" EntitySet="Libraries" />
+      <End Role="AspNetUserLibrary" EntitySet="AspNetUserLibrary" />
     </AssociationSet>
     <AssociationSet Name="FK_AspNetUserPlayer" Association="Self.FK_AspNetUserPlayer">
-      <End EntitySet="AspNetUsers" Role="AspNetUsers" />
-      <End EntitySet="Players" Role="Players" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Players" EntitySet="Players" />
     </AssociationSet>
     <AssociationSet Name="FK_BoardGamePlaySession" Association="Self.FK_BoardGamePlaySession">
-      <End EntitySet="BoardGames" Role="BoardGames" />
-      <End EntitySet="PlaySessions" Role="PlaySessions" />
+      <End Role="BoardGames" EntitySet="BoardGames" />
+      <End Role="PlaySessions" EntitySet="PlaySessions" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-      <End EntitySet="AspNetUsers" Role="AspNetUsers" />
-      <End EntitySet="AspNetUserClaims" Role="AspNetUserClaims" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-      <End EntitySet="AspNetUsers" Role="AspNetUsers" />
-      <End EntitySet="AspNetUserLogins" Role="AspNetUserLogins" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
     </AssociationSet>
-    <AssociationSet Name="FK_LibraryBoardGame_BoardGames" Association="Self.FK_LibraryBoardGame_BoardGames">
-      <End EntitySet="BoardGames" Role="BoardGames" />
-      <End EntitySet="LibraryBoardGame" Role="LibraryBoardGame" />
+    <AssociationSet Name="FK_LibraryBoardGame_BoardGame" Association="Self.FK_LibraryBoardGame_BoardGame">
+      <End Role="BoardGames" EntitySet="BoardGames" />
+      <End Role="LibraryBoardGame" EntitySet="LibraryBoardGame" />
     </AssociationSet>
     <AssociationSet Name="FK_LibraryBoardGame_Libraries" Association="Self.FK_LibraryBoardGame_Libraries">
-      <End EntitySet="Libraries" Role="Libraries" />
-      <End EntitySet="LibraryBoardGame" Role="LibraryBoardGame" />
+      <End Role="Libraries" EntitySet="Libraries" />
+      <End Role="LibraryBoardGame" EntitySet="LibraryBoardGame" />
     </AssociationSet>
     <AssociationSet Name="FK_PlayerMedal" Association="Self.FK_PlayerMedal">
-      <End EntitySet="Players" Role="Players" />
-      <End EntitySet="Medals" Role="Medals" />
+      <End Role="Players" EntitySet="Players" />
+      <End Role="Medals" EntitySet="Medals" />
     </AssociationSet>
     <AssociationSet Name="FK_PlayerPlaySession_Players" Association="Self.FK_PlayerPlaySession_Players">
-      <End EntitySet="Players" Role="Players" />
-      <End EntitySet="PlayerPlaySession" Role="PlayerPlaySession" />
+      <End Role="Players" EntitySet="Players" />
+      <End Role="PlayerPlaySession" EntitySet="PlayerPlaySession" />
     </AssociationSet>
     <AssociationSet Name="FK_PlayerPlaySession_PlaySessions" Association="Self.FK_PlayerPlaySession_PlaySessions">
-      <End EntitySet="PlaySessions" Role="PlaySessions" />
-      <End EntitySet="PlayerPlaySession" Role="PlayerPlaySession" />
+      <End Role="PlaySessions" EntitySet="PlaySessions" />
+      <End Role="PlayerPlaySession" EntitySet="PlayerPlaySession" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

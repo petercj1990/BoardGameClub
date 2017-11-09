@@ -50,16 +50,27 @@
     <EntitySetMapping Name="BoardGames">
       <EntityTypeMapping TypeName="IsTypeOf(BoardGameClubModel.BoardGame)">
         <MappingFragment StoreEntitySet="BoardGames">
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="PlayingTime" ColumnName="PlayingTime" />
+          <ScalarProperty Name="MaxPlayer" ColumnName="MaxPlayer" />
+          <ScalarProperty Name="MinPlayer" ColumnName="MinPlayer" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="TotalPlays" ColumnName="TotalPlays" />
           <ScalarProperty Name="BGGID" ColumnName="BGGID" />
+        </MappingFragment>
+        <MappingFragment StoreEntitySet="Libraries">
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Libraries">
       <EntityTypeMapping TypeName="IsTypeOf(BoardGameClubModel.Library)">
         <MappingFragment StoreEntitySet="Libraries">
+          <ScalarProperty Name="bgId" ColumnName="bgId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

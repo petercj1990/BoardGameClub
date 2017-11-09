@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h3 class="modal-title">{{BG.Name}}</h3>
+</div>
+<div>
+  <div class="row">
+    <div class="col-md-3">
+      <a ng-click="goToBGG(BG.BGGID)"><img src="{{BG.Image}}" /></a>
+    </div>
+    
+    <div class="col-md-6">
+      <div>Players: <div ng-show="(BG.MinPlayer&&BG.MaxPlayer)">{{BG.MinPlayer}}-{{BG.MaxPlayer}}</div></div>
+      <div>Playing Time: {{BG.PlayingTime}}</div>
+      <div>Total Plays: {{BG.TotalPlays}}</div>
+      <div>Personal Plays: {{BG.PersonalPlays}}</div>
+      <div>Personal Wins: {{BG.PersonalWins}}</div>
+    </div>
+  </div>
+  </br>
+  <div ng-show="owned">
+    <button ng-click="addToFavorites(BG.Id)">Add Game To Favorites</button>
+    <button ng-click="removeFromCollection(BG.Id)">Remove from Collection</button>
+    </br></br>
+  </div>
+
+  <p ng-bind-html="renderHtml(BG.Description)"></p>
+</div>

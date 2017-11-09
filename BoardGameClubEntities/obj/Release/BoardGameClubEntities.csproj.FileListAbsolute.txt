@@ -1,0 +1,11 @@
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClubEntities\bin\Release\BoardGameClubEntities.dll.config
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClubEntities\bin\Release\BoardGameClubEntities.dll
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClubEntities\bin\Release\BoardGameClubEntities.pdb
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClubEntities\bin\Release\EntityFramework.dll
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClubEntities\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClubEntities\bin\Release\EntityFramework.xml
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClubEntities\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClubEntities\obj\Release\BoardGameClubEntities.csproj.CoreCompileInputs.cache
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClubEntities\obj\Release\BoardGameClubEntities.dll
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClubEntities\obj\Release\BoardGameClubEntities.pdb
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClubEntities\obj\Release\BoardGameClubEntities.csprojResolveAssemblyReference.cache

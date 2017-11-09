@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BoardGameClub.Models;
 
+
 namespace BoardGameClub.Controllers
 {
     [Authorize]

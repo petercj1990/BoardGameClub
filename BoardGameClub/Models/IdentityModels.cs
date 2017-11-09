@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using BoardGameClubEntities;
 
 namespace BoardGameClub.Models
 {
@@ -24,28 +25,18 @@ namespace BoardGameClub.Models
 
   public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
   {
-    public DbSet<Player> Players { get; set; }
-    public DbSet<Medal> Medal { get; set; }
-    public DbSet<BoardGame> Boardgames { get; set; }
-    public DbSet<PlaySession> PlaySessions { get; set; }
-    public DbSet<Library> Libraries { get; set; }
+
 
     // ... your custom DbSets
     public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
     {
-          Database.SetInitializer<ApplicationDbContext>(null); // Remove default initializer
-          //Configuration.LazyLoadingEnabled = false;
-          //Configuration.ProxyCreationEnabled = false;
+          Database.SetInitializer<ApplicationDbContext>(null); 
     }
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
       base.OnModelCreating(modelBuilder);
-      //modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-      //modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
-      //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-      modelBuilder.Entity<AspNetUserLogin>().HasKey<string>(l => l.UserId);
-      modelBuilder.Entity<AspNetRole>().HasKey<string>(r => r.Id);
+      modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
     }
     public static ApplicationDbContext Create()

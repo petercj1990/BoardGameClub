@@ -60,6 +60,12 @@
     <Property Name="BGGID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="PlaySessions" Relationship="Self.FK_BoardGamePlaySession" FromRole="BoardGames" ToRole="PlaySessions" />
     <NavigationProperty Name="Libraries" Relationship="Self.LibraryBoardGame" FromRole="BoardGames" ToRole="Libraries" />
+    <Property Name="MinPlayer" Type="Int32" />
+    <Property Name="MaxPlayer" Type="Int32" />
+    <Property Name="PlayingTime" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Library">
     <Key>
@@ -68,6 +74,8 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserLibrary" FromRole="Libraries" ToRole="AspNetUsers" />
     <NavigationProperty Name="BoardGames" Relationship="Self.LibraryBoardGame" FromRole="Libraries" ToRole="BoardGames" />
+    <Property Name="userId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="bgId" Type="Int32" />
   </EntityType>
   <EntityType Name="Medal">
     <Key>

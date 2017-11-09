@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardGameClub", "BoardGameC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardGameClub.Tests", "BoardGameClub.Tests\BoardGameClub.Tests.csproj", "{88F68E16-4950-47E0-B2BA-11A45AAC75F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardGameClubEntities", "BoardGameClubEntities\BoardGameClubEntities.csproj", "{E1DB7C4E-0FF1-4528-ADE4-8D1829950F1D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{88F68E16-4950-47E0-B2BA-11A45AAC75F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88F68E16-4950-47E0-B2BA-11A45AAC75F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88F68E16-4950-47E0-B2BA-11A45AAC75F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1DB7C4E-0FF1-4528-ADE4-8D1829950F1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1DB7C4E-0FF1-4528-ADE4-8D1829950F1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1DB7C4E-0FF1-4528-ADE4-8D1829950F1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1DB7C4E-0FF1-4528-ADE4-8D1829950F1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

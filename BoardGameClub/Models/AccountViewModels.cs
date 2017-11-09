@@ -10,6 +10,9 @@ namespace BoardGameClub.Models
     [EmailAddress]
     [Display(Name = "Email")]
     public string Email { get; set; }
+    [Display(Name = "Name")]
+    public string Name { get; set; }
+    public Department Department { get; set; }
   }
 
   public class ExternalLoginListViewModel

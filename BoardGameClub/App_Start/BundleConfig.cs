@@ -31,6 +31,8 @@ namespace BoardGameClub
         
             bundles.Add(new ScriptBundle("~/bundles/mini-spa/script")
                       .Include("~/Scripts/angular.js")
+                      .Include("~/Scripts/angular-animate.js")
+                      .Include("~/Scripts/angular-sanitize.js")
                       .Include("~/Scripts/angular-route.js")
                       .Include("~/Scripts/angular-ui/ui-bootstrap-tpls.js")
                       .Include("~/MainPage/BGCApp.js")
@@ -42,8 +44,10 @@ namespace BoardGameClub
                       .Include("~/Profile/scripts/controllers/about.js")
                       .Include("~/Profile/scripts/controllers/Player.js")
                       .Include("~/Profile/scripts/controllers/boardgameModal.js")
+                      .Include("~/Profile/scripts/controllers/BoardGame.js")
                       .Include("~/Profile/scripts/services/DataService.js")
                       .Include("~/Profile/scripts/services/UserService.js")
+                      .Include("~/Profile/scripts/directives/searchBar.js")
                 );
         }
     }

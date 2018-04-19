@@ -1,4 +1,4 @@
-var PlayerApp = angular.module('PlayerApp', ["ngRoute", "ui.bootstrap", 'ngAnimate', 'ngSanitize']);
+var PlayerApp = angular.module('PlayerApp', ["ngRoute", "ui.bootstrap", 'ngAnimate', 'ngSanitize', 'ngFileUpload', 'ngImgCrop']);
 PlayerApp.config(
     ["$routeProvider", "$locationProvider",
     function ($routeProvider, $locationProvider) {
@@ -14,6 +14,10 @@ PlayerApp.config(
             .when("/BG/:id", {
                 templateUrl: "../Profile/views/BGView.html",
                 controller: "BGCtrl"
+            })
+            .when("/playSessions",{
+                templateUrl: "../Profile/views/playSessions.html",
+                controller: "playSession"
             })
             .otherwise({
                 redirectTo: "/home"

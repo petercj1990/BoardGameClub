@@ -83,9 +83,12 @@ namespace BoardGameClub.Controllers
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             ApplicationUser signedUser = UserManager.FindByEmail(model.Email);
+            if (signedUser == null)
+            {
+                ModelState.AddModelError("", "This Email couldn't be found");
+                return View(model);
+            }
             var result = await SignInManager.PasswordSignInAsync(signedUser.UserName, model.Password, model.RememberMe, shouldLockout: false);
-            Debug.Write("im right here");
-            Debug.Write(result);
             switch (result)
             {
                 case SignInStatus.Success:

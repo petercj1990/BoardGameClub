@@ -23,8 +23,6 @@
         public string Image { get; set; }
         public string Description { get; set; }
         public string Category { get; set; }
-        
-        //public virtual ICollection<PlaySession> PlaySessions { get; set; }
-        //public virtual ICollection<Library> Libraries { get; set; }
-    }
+        public Nullable<int> Teams { get; set; }
+  }
 }

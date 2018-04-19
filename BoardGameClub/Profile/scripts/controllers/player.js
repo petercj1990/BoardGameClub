@@ -1,17 +1,19 @@
 'use strict';
 
 angular.module('PlayerApp')
-    .controller('PlayerCtrl', ['$scope', '$routeParams', 'DataService', "$http", "$timeout", "$filter", "$uibModal", '$sce', '$location',
-        function ($scope, $routeParams, DataService, $http, $timeout, $filter, $uibModal, $sce, $location) {
+    .controller('PlayerCtrl', ['$scope', '$routeParams', 'DataService', "$http", "$timeout", "$filter", "$uibModal", '$sce', '$location', 'Upload',
+        function ($scope, $routeParams, DataService, $http, $timeout, $filter, $uibModal, $sce, $location, Upload) {
           //load Player values
             $scope.Games = [];
             $scope.aGames = [];
+            $scope.userStats = {};
             $scope.totalItems = 0;
             $scope.currentPage = 1;
             $scope.ItemsPerPage = 5;
             $scope.maxSize = 5;
             $scope.numPages = 0;
             $scope.otherProfile = false;
+            $http.defaults.headers.common["Content-Type"] = "application/x-www-form-urlencoded";
             $scope.setPage = function (pageNo) {
                 $scope.currentPage = pageNo;
             };
@@ -21,70 +23,116 @@ angular.module('PlayerApp')
             };
 
             $scope.setPage = function (pageNo) {
-                $scope.currentPage = pageNo;
-            }
+              $scope.currentPage = pageNo;
+            };
+
+            $scope.add = function () {
+              var f = document.getElementById('file').files[0],
+                r = new FileReader();
+
+              r.onloadend = function (e) {
+                var data = e.target.result;
+                //send your binary data via $http or $resource or do anything else with it
+              };
+
+              r.readAsBinaryString(f);
+            };
 
             function setPagingData(page) {
-                $timeout(function () {
-                    var slicingGames = [];
-                    var start = ((page - 1) * $scope.ItemsPerPage);
-                    var end = (page * $scope.ItemsPerPage);
-                    if (end > $scope.Games.length) {
-                        end = $scope.Games.length;
-                    }
-                    for (var x = start; x <
-                        end; x++) {
-                        slicingGames.push($scope.Games[x]);
-                    }
-                    $scope.aGames = slicingGames;
-                })
+              $timeout(function() {
+                var slicingGames = [];
+                var start = ((page - 1) * $scope.ItemsPerPage);
+                var end = page * $scope.ItemsPerPage;
+                if (end > $scope.Games.length) {
+                  end = $scope.Games.length;
+                }
+                for (var x = start;
+                  x <
+                    end;
+                  x++) {
+                  slicingGames.push($scope.Games[x]);
+                }
+                $scope.aGames = slicingGames;
+              });
             }
-           
-            $http.defaults.headers.common["Content-Type"] = "application/x-www-form-urlencoded";
+            $scope.winPercentageEval = function (wins, losses) {
+              var percentage = (wins / (wins + losses)) * 100;
+              return percentage;
+            };
             function onLoad(cb) {
-              
                 if ($routeParams.id) {
-                    $scope.otherProfile = true;
-                    console.log($routeParams.id)
-                    DataService.pullUser($routeParams.id).then(function (result) {
-                        $scope.user = result;
-                        for (let x in result.PlayersGames) {
-                            $timeout(function () {
-                                $scope.Games.push(result.PlayersGames[x]);
-                                $scope.otherProfile = true;
-                                
-                            })
-                        }
-                        cb();
-                    }, function (err) {
-                        console.log(err);
-                    })
+                  $scope.otherProfile = true;
+                  console.log($routeParams.id);
+                  DataService.pullUser($routeParams.id).then(function(result) {
+                    $scope.user = result;
+                    console.log(result);
+                    if (result.ProfilePicPath) {
+                      $scope.user.ProfilePicPath = "../Content/profilePics/" + result.ProfilePicPath.toString();
+                    }
+                    else {
+                      $scope.user.ProfilePicPath = "../Content/profilePics/profile.png";
+                    }
+                      console.log(result);
+                      for (let x in result.PlayersGames) {
+                        $timeout(function() {
+                          $scope.Games.push(result.PlayersGames[x]);
+                          $scope.otherProfile = true;
+                        });
+                      }
+                      cb();
+                    },
+                    function(err) {
+                      console.log(err);
+                    });
+                    DataService.getStats($routeParams.id).then(function (result) {
+                      $scope.userStats = result; 
+                      console.log($scope.userStats);
+                    },
+                    function (err) {
+                      console.log(err);
+                    });
                 }
                 else {
-                    $scope.otherProfile = false;
-                    DataService.pullUser("self").then(function (result) {
-                        $scope.user = result;
-                        for (let x in result.PlayersGames) {
-                            $timeout(function () {
-                                $scope.Games.push(result.PlayersGames[x]);
-                                $scope.totalItems = $scope.Games.length;
-                                
-                            })
-                        }
-                        cb();
-                    }, function (err) {
-                        console.log(error);
-                    })
+                  $scope.otherProfile = false;
+                  DataService.pullUser("self").then(function(result) {
+                      $scope.user = result;
+                      console.log(result);
+                      if (result.ProfilePicPath) {
+                        $scope.user.ProfilePicPath = "../Content/profilePics/" + result.ProfilePicPath.toString();
+                      }
+                      else {
+                        $scope.user.ProfilePicPath = "../Content/profilePics/profile.png";
+                      }
+                      for (let x in result.PlayersGames) {
+                        $timeout(function() {
+                          $scope.Games.push(result.PlayersGames[x]);
+                          $scope.totalItems = $scope.Games.length;
+                        });
+                      }
+                      cb();
+                    },
+                    function(err) {
+                      console.log(err);
+                    });
+                  DataService.getStats("self").then(function (result) {
+                    $timeout(function () {
+                      $scope.userStats = result;
+                    });
+                    console.log(result);
+
+                  },
+                  function (err) {
+                    console.log(err);
+                  });
                 }
-               
             }
 
             onLoad(function(){
                 setPagingData(1);
                 $timeout(function () {
-                    $scope.totalItems = $scope.Games.length;
-                    $scope.numPages = Math.round($scope.totalItems / $scope.ItemsPerPage);
-                })
+                  $scope.totalItems = $scope.Games.length;
+                  $scope.numPages = Math.round($scope.totalItems / $scope.ItemsPerPage);
+                });
             });
 
             //data declarations
@@ -97,7 +145,7 @@ angular.module('PlayerApp')
 
             var dataList = document.getElementById('boardgame-list');
 
-        //functions
+            //functions
             $scope.searchSite = function (searchText) {
                 console.log(searchText);
                 for (let entry of $scope.siteSearchResponse) {
@@ -114,33 +162,31 @@ angular.module('PlayerApp')
                 $scope.siteSearchText = "";
             };
 
-
         $scope.$watch('siteSearchText', function (tmpStr) {
-            if (!tmpStr || tmpStr.length <= 2) {
-                return 0;
-            }
-            if (tmpStr === $scope.siteSearchText) {
-                DataService.searchSite($scope.siteSearchText).then(function (result) {
-                    var searchResults = [];
-                    for (let player in result.PlayerResults) {
-                        console.log(player);
-                        result.PlayerResults[player].Type = "Player";
-                        searchResults.push(result.PlayerResults[player]);
-                    }
-                    for (let game in result.BGResults) {
-                        console.log(game)
-                        result.BGResults[game].Type = "Game"
-                        searchResults.push(result.BGResults[game]);
-                    }
-                    $timeout(function () {
-                        $scope.siteSearchResponse = searchResults;
-                        console.log($scope.siteSearchResponse);
-                    });
-                    
-                }, function (err) {
-                    console.log(err);
-                })
-            }
+          if (!tmpStr || tmpStr.length <= 2) {
+              return 0;
+          }
+          if (tmpStr === $scope.siteSearchText) {
+            DataService.searchSite($scope.siteSearchText).then(function(result) {
+                var searchResults = [];
+                for (let player in result.PlayerResults) {
+                  result.PlayerResults[player].Type = "Player";
+                  searchResults.push(result.PlayerResults[player]);
+                }
+                for (let game in result.BGResults) {
+                  console.log(game);
+                  result.BGResults[game].Type = "Game";
+                  searchResults.push(result.BGResults[game]);
+                }
+                $timeout(function() {
+                  $scope.siteSearchResponse = searchResults;
+                  console.log($scope.siteSearchResponse);
+                });
+
+              },function(err) {
+                console.log(err);
+              });
+          }
         });
 
         // BGG search
@@ -164,11 +210,12 @@ angular.module('PlayerApp')
               {                  
                   params: { searchText: $scope.searchText }
               }).then(function (data) {
-                  if (data.data.boardgames._value) {
-                          $scope.responseData = data.data.boardgames._value;
-                          if ($scope.responseData.length === 1) {
-                              $scope.selectedBG = $scope.responseData;
-                          }
+                if (data.data.boardgames._value) {
+                  console.log(data.data.boardgames._value);
+                  $scope.responseData = data.data.boardgames._value;
+                  if ($scope.responseData.length === 1) {
+                      $scope.selectedBG = $scope.responseData;
+                  }
                       }
                       else {
                       $scope.responseData = [{
@@ -191,21 +238,21 @@ angular.module('PlayerApp')
               DataService.removeGameFromLibrary(GameData);
           };
 
-          $scope.openImageUploadModal = function (){
-                var modalInstance = $uibModal.open({
-                    templateUrl: 'addProfilePic.html',
-                    controller: uploadModal,
-                    scope: $scope,
-                    resolve: {
-                    }
-                });
+          $scope.openImageUploadModal = function () {
+            var modalInstance = $uibModal.open({
+              templateUrl: 'addProfilePic.html',
+              controller: uploadModal,
+              scope: $scope,
+              resolve: {
+              }
+            });
 
-                modalInstance.result.then(function (selectedItem) {
-                    $scope.selected = selectedItem;
-                }, function () {
-                    //console.info('Modal dismissed at: ' + new Date());
-                });
-          }
+            modalInstance.result.then(function (selectedItem) {
+              $scope.selected = selectedItem;
+            }, function () {
+              //console.info('Modal dismissed at: ' + new Date());
+            });
+          };
 
           //$scope.addFriend = function (Id) {
           //    console.log('adding a friend');
@@ -221,14 +268,51 @@ angular.module('PlayerApp')
           //        });
           //}
 
+          $scope.uploadProfileModal = function () {
+            var modalInstance = $uibModal.open({
+              templateUrl: 'addProfilePic.html',
+              controller: uploadModal,
+              scope: $scope
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+              $scope.selected = selectedItem;
+            }, function () {
+              //console.info('Modal dismissed at: ' + new Date());
+            });
+          };
+
+          var uploadModal = ["$scope", "$http", "$timeout", "Upload", "$uibModalInstance", function ($scope, $http, $timeout, Upload, $uibModalInstance) {
+            $scope.upload = function (dataUrl, name) {
+              Upload.upload({
+                url: 'UploadProfilePic',
+                file: Upload.dataUrltoBlob(dataUrl, name)
+              }).then(function (response) {
+                $timeout(function () {
+                  $scope.result = response.data;
+                  DataService.pullUser().then(function (results) {
+                    $scope.user = results;
+                  },
+                    function (err) { console.error(err) });
+                });
+              }, function (response) {
+                if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
+              }, function (evt) {
+                $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
+              });
+            };
+            $scope.close = function () {
+              console.log("tries to close");
+              $uibModalInstance.close();
+            };
+          }];
+
           $scope.routeToGame = function (id) {
-              $location.path('/BG/' + id);
-          }
+            $location.path('/BG/' + id);
+          };
 
           //modal requirements
-                 
           function showForm(BG) {
-
               var modalInstance = $uibModal.open({
                   templateUrl: 'addGame.html',
                   controller: boardgameModal,
@@ -242,108 +326,98 @@ angular.module('PlayerApp')
 
               modalInstance.result.then(function (selectedItem) {
                   $scope.selected = selectedItem;
-              }, function () {
-                  //console.info('Modal dismissed at: ' + new Date());
               });
           }
         
-          var boardgameModal = function ($scope, $http, $uibModalInstance) {
-            console.log($scope.$resolve.BG);
+          var boardgameModal = ["$scope", "$http", "$uibModalInstance", function ($scope, $http, $uibModalInstance) {
             $scope.pendingGame = {};
             $scope.pendingGame.BGGID = $scope.$resolve.BG;
             $http.get("BoardgameData",
-            {
+              {
                 headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
                 params: { GameId: $scope.$resolve.BG }
-            }).then(function (data) {
+              }).then(function (data) {
                 console.log(data.data.boardgames._value);
                 for (let attribute of data.data.boardgames._value[0].boardgame._value) {
-                    if (attribute.minplayers) {
-                        $scope.minPlayer = attribute.minplayers._value;
-                        $scope.pendingGame.MinPlayer = parseInt(attribute.minplayers._value);
-                        console.log('i add a min player');
+                  if (attribute.minplayers) {
+                    $scope.minPlayer = attribute.minplayers._value;
+                    $scope.pendingGame.MinPlayer = parseInt(attribute.minplayers._value);
+                    console.log('i add a min player');
+                  }
+                  if (attribute.maxplayers) {
+                    $scope.maxPlayer = attribute.maxplayers._value;
+                    $scope.pendingGame.maxPlayer = parseInt(attribute.maxplayers._value);
+                    console.log('i add a max player');
+                  }
+                  if (attribute.playingtime) {
+                    $scope.pendingGame.playingtime = attribute.playingtime._value;
+                    console.log('i add a playtime');
+                  }
+                  if (attribute.name) {
+                    if (attribute.name.primary) {
+                      $scope.pendingGame.name = attribute.name._value;
+                      console.log("i add a name");
                     }
-                    if (attribute.maxplayers) {
-                        $scope.maxPlayer = attribute.maxplayers._value
-                        $scope.pendingGame.maxPlayer = parseInt(attribute.maxplayers._value);
-                        console.log('i add a max player');
-                    }
-                    if (attribute.playingtime) {
-                        $scope.pendingGame.playingtime = attribute.playingtime._value;
-                        console.log('i add a playtime');
-                    }
-                    if (attribute.name) {
-                        if (attribute.name.primary) {
-                            $scope.pendingGame.name = attribute.name._value;
-                            console.log("i add a name");
-                        }
-                    }
-                    if (attribute.thumbnail) {
-                        $scope.pendingGame.image = attribute.thumbnail._value;
-                        console.log('i add an Image');
-                    }
-                    if (attribute.description) {
-                        $scope.pendingGame.description = attribute.description._value;
-                        console.log('i add a description');
-                    }
-                    if (attribute.boardgamecategory) {
-                        $scope.pendingGame.category = attribute.boardgamecategory._value;
-                        console.log('i add a boardgamecategory');
-                    }
+                  }
+                  if (attribute.thumbnail) {
+                    $scope.pendingGame.image = attribute.thumbnail._value;
+                    console.log('i add an Image');
+                  }
+                  if (attribute.description) {
+                    $scope.pendingGame.description = attribute.description._value;
+                    console.log('i add a description');
+                  }
+                  if (attribute.boardgamecategory) {
+                    $scope.pendingGame.category = attribute.boardgamecategory._value;
+                    console.log('i add a boardgamecategory');
+                  }
                 }
-            }, function (error) {
+              }, function (error) {
                 console.error(error);
-            });
+              });
 
             $scope.ok = function () {
-                var BoardGame = $scope.pendingGame;
-                console.log(BoardGame);
-                $http.post("AddGameToLibrary", BoardGame,
-                    {
-                        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-                        Data: { BoardGame: $scope.pendingGame }
-                    }).then(function (data) {
-                        console.log(data, Boardgame);
-                        
-                        $timeout(function () {
-                            $scope.Games.push(Boardgame);
-                        })
-                        setPagingData($scope.currentPage);
+              var BoardGame = $scope.pendingGame;
+              console.log(BoardGame);
+              $http.post("AddGameToLibrary", BoardGame,
+                {
+                  headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                  Data: { BoardGame: $scope.pendingGame }
+                }).then(function (data) {
+                  console.log('makes a game');
+                  $timeout(function () {
+                    $scope.Games.push(BoardGame);
+                  });
+                  setPagingData($scope.currentPage);
 
-                    }, function (error) {
-                        
-                        
-                        console.log(error);
-                    });
-
-                console.log($scope.pendingGame);
-                console.log($scope.Games);
-                $scope.Games.push({
-                    BGGID: $scope.pendingGame.BGGID,
-                    Category: $scope.pendingGame.category,
-                    Image: $scope.pendingGame.image,            
-                    MaxPlayer: $scope.pendingGame.maxPlayer,
-                    MinPlayer: $scope.pendingGame.category,
-                    Name: $scope.pendingGame.name
+                }, function (error) {
+                  console.log(error);
                 });
-                setPagingData($scope.currentPage);
-                $uibModalInstance.close();
+
+              console.log($scope.pendingGame);
+              console.log($scope.Games);
+              $scope.Games.push({
+                BGGID: $scope.pendingGame.BGGID,
+                Category: $scope.pendingGame.category,
+                Image: $scope.pendingGame.image,
+                MaxPlayer: $scope.pendingGame.maxPlayer,
+                MinPlayer: $scope.pendingGame.minPlayer,
+                Name: $scope.pendingGame.name
+              });
+              setPagingData($scope.currentPage);
+              $uibModalInstance.close();
             };
 
             $scope.renderHtml = function (html_code) {
-                return $sce.trustAsHtml(html_code);
+              return $sce.trustAsHtml(html_code);
             };
 
             $scope.cancel = function () {
-                $uibModalInstance.close();
+              $uibModalInstance.close();
             };
 
             $scope.toString = function (value) {
-                return value.toString();
-            }
-          };
-
-          
-          
-          
+              return value.toString();
+            };
+          }];
   }]);

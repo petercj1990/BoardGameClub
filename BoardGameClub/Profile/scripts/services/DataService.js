@@ -4,10 +4,10 @@ PlayerApp.factory('DataService',
             function pullUser(id) {
                 var defer = $q.defer();
                 if (id === "self") {
-                    $http.get('Self').then(function (response) {
-                        defer.resolve(response.data.Player);
+                  $http.get('Self').then(function (response) {
+                        defer.resolve(response.data);
                     }, function (error) {
-                        defer.reject(error)
+                      defer.reject(error);
                     });
                 }
                 else {
@@ -17,13 +17,28 @@ PlayerApp.factory('DataService',
                             headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
                             params: { Id: id }
                         }).then(function (response) {
-                        defer.resolve(response.data.Player);
+                        defer.resolve(response.data);
                     }, function (error) {
-                        defer.reject(error)
+                      defer.reject(error);
                     });
                 }
                 return defer.promise;
-             }
+            }
+
+            function getStats(id) {
+              var defer = $q.defer();
+                $http.get('GetStatsID', {
+                  headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                  params: { Id: id }
+                }).then(function (response) {
+
+                  defer.resolve(response.data);
+                }, function (error) {
+                  defer.reject(error);
+                });
+              
+              return defer.promise;
+            }
 
              function addGameToLibrary(boardGameData) {
                  $http.post('Player/Boardgame', boardGameData).then(function (result) {
@@ -32,6 +47,8 @@ PlayerApp.factory('DataService',
                      return error;
                  });
              }
+
+             
 
              function removeGameFromLibrary(boardGameData) {
                  $http.delete('Player/Boardgame', boardGameData.id).then(function (result) {
@@ -51,12 +68,26 @@ PlayerApp.factory('DataService',
                      });
                  return defer.promise;
              }
-            
+
+             function getPlaysessions(option) {
+                 var defer = $q.defer();
+                 $http.get("playSessions", { option: option }
+                 ).then(function (data) {
+                     defer.resolve(data.data);
+                 }, function (err) {
+                     defer.reject(err);
+                 });
+                 return defer.promise;
+             }
+
             return {
                 pullUser: pullUser,
                 addGameToLibrary: addGameToLibrary,
                 removeGameFromLibrary: removeGameFromLibrary,
-                searchSite: searchSite
+                searchSite: searchSite,
+                getPlaysessions: getPlaysessions,
+                getStats: getStats
+
                 
             };
         }]);

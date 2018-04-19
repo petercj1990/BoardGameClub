@@ -10,17 +10,64 @@
     <div class="col-md-6">
       <div>Players: <div ng-show="(BG.MinPlayer&&BG.MaxPlayer)">{{BG.MinPlayer}}-{{BG.MaxPlayer}}</div></div>
       <div>Playing Time: {{BG.PlayingTime}}</div>
-      <div>Total Plays: {{BG.TotalPlays}}</div>
-      <div>Personal Plays: {{BG.PersonalPlays}}</div>
-      <div>Personal Wins: {{BG.PersonalWins}}</div>
+      <div>Total Plays: {{BGStats.totalPlays}}</div>
+      <div>Personal Plays: {{BGStats.SelfBGStats[0].Plays}}</div>
+      <div>Personal Wins: {{BGStats.SelfBGStats[0].Wins}}</div>
     </div>
   </div>
   </br>
   <div ng-show="owned">
-    <button ng-click="addToFavorites(BG.Id)">Add Game To Favorites</button>
-    <button ng-click="removeFromCollection(BG.Id)">Remove from Collection</button>
-    </br></br>
+    <button class="btn btn-primary" ng-click="addToFavorites(BG.Id)">Add Game To Favorites</button>
+    <button class="btn btn-primary" ng-click="removeFromCollection(BG.Id)">Remove from Collection</button>
+    </br>
   </div>
 
-  <p ng-bind-html="renderHtml(BG.Description)"></p>
+  <div>
+    <h3>Owned by:</h3>
+      
+  </div>
+
+  <h3>Records</h3>
+  <div class="col-md-12 pannelSection">
+    
+    <div class="panel panel-info col-md-4 panelStyle" ng-show="BGStats.BGPlayerRelations.Buddies.length">
+      <h4 class=" panelHeadder">Most Plays</h4>
+      <div class="panel-body panelBody">
+        <h4 class="panel-text">{{BGStats.BGPlayerRelations.Buddies[0].Name}}</h4>
+        <h6 class="panel-subtitle">
+          Plays:{{BGStats.BGPlayerRelations.Buddies[0].Plays}}
+          Wins:{{BGStats.BGPlayerRelations.Buddies[0].Wins}}
+          Losses:{{BGStats.BGPlayerRelations.Buddies[0].Losses}}
+          Win %: {{winPercentageEval(BGStats.BGPlayerRelations.Buddies[0].Wins, BGStats.BGPlayerRelations.Buddies[0].Losses)}} %
+        </h6>
+      </div>
+    </div>
+    <div class="panel panel-info col-md-4 panelStyle" ng-show="BGStats.BGPlayerRelations.Conqueror.length">
+      <h4 class=" panelHeadder">Most Wins</h4>
+      <div class="panel-body panelBody">
+        <h4 class="panel-text">{{BGStats.BGPlayerRelations.Conqueror[0].Name}}</h4>
+        <h6 class="panel-subtitle">
+          Plays:{{BGStats.BGPlayerRelations.Conqueror[0].Plays}}
+          Wins:{{BGStats.BGPlayerRelations.Conqueror[0].Wins}}
+          Losses:{{BGStats.BGPlayerRelations.Conqueror[0].Losses}}
+          Win %: {{winPercentageEval(BGStats.BGPlayerRelations.Conqueror[0].Wins, BGStats.BGPlayerRelations.Conqueror[0].Losses)}} %
+        </h6>
+      </div>
+    </div>
+    <div class="panel panel-info col-md-4 panelStyle" ng-show="BGStats.BGPlayerRelations.Fodder.length">
+      <h4 class=" panelHeadder">Most Losses</h4>
+      <div class="panel-body panelBody">
+        <h4 class="panel-text">{{BGStats.BGPlayerRelations.Fodder[0].Name }}</h4>
+        <h6 class="panel-subtitle">
+          Plays:{{BGStats.BGPlayerRelations.Fodder[0].Plays}}
+          Wins:{{BGStats.BGPlayerRelations.Fodder[0].Wins}}
+          Losses:{{BGStats.BGPlayerRelations.Fodder[0].Losses}}
+          Win %: {{winPercentageEval(BGStats.BGPlayerRelations.Fodder[0].Wins, BGStats.BGPlayerRelations.Fodder[0].Losses)}} %
+        </h6>
+      </div>
+    </div>
+  </div>
+  </br>
+  <div class="BGOwners" ng-repeat="user in BGOwners"> <div ng-click="routeToPlayer(user.Id)">{{user.Name}}</div> </div>
+  <p class="bgDescription" ng-bind-html="renderHtml(BG.Description)"></p>
 </div>

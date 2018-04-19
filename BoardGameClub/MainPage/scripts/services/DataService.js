@@ -1,15 +1,11 @@
 BGCApp.factory('DataService',
     ["$http",
         function ($http) {
+          var insertEmployee = function () {
+            console.log('the service works');
+          };
 
-
-            var insertEmployee = function () {
-                console.log('the service works');
-            }
-
-
-            return {
-                insertEmployee: insertEmployee,
-                
-            };
+          return {
+              insertEmployee: insertEmployee                
+          };
         }]);

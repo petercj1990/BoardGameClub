@@ -19,5 +19,7 @@
         
         [ForeignKey("AspNetUser_Id")]
         public virtual AspNetUser AspNetUser { get; set; }
+
+        public string ProfilePicPath { get; set; }
     }
 }

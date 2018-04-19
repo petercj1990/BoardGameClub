@@ -26,11 +26,9 @@
                 .HasKey(l => new { l.UserId, l.LoginProvider, l.ProviderKey });
             modelBuilder.Entity<Player>()
                 .HasKey(l => l.Id);
-            //modelBuilder.Entity<Player>()
             //    .HasOptional(p => p.AspNetUser)
             //    .WithMany()
             //    .HasForeignKey(a => a.AspNetUser_Id);
-
         }
 
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
@@ -42,6 +40,7 @@
         public virtual DbSet<Medal> Medals { get; set; }
         public virtual DbSet<Player> Players { get; set; }
         public virtual DbSet<PlaySession> PlaySessions { get; set; }
+        public virtual DbSet<Participant> Participants { get; set; }
 
     }
 }

@@ -1,12 +1,10 @@
 body {
-    padding-top: 60px;
+    padding-top: 70px;
     padding-bottom: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -31,4 +29,16 @@ textarea {
 .search-container {
   display: inline-flex;
   justify-content: center;
+}
+
+.jumbotron {
+  text-align: center;
+  padding-left: 0%;
+  padding-right: 0%;
+}
+
+#searchBox {
+  width: 80%;
+  display: flex;
+  flex-wrap: nowrap;
 }

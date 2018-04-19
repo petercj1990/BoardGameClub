@@ -148,6 +148,8 @@ C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Xml.XPa
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Xml.XPath.XDocument.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Antlr3.Runtime.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\BoardGameClubEntities.dll
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\BootstrapMvc.Bootstrap4.dll
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\BootstrapMvc.Core.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\EntityFramework.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\EntityFramework.SqlServer.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.AI.Agent.Intercept.dll
@@ -183,6 +185,7 @@ C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Owin
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Owin.Security.OAuth.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.QualityTools.Testing.Fakes.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Newtonsoft.Json.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Owin.dll
@@ -190,7 +193,9 @@ C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\SendGrid.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\SendGrid.SmtpApi.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Buffers.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Net.Http.Extensions.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Net.Http.Formatting.dll
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Net.Http.Primitives.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Text.Encodings.Web.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Web.Cors.dll
@@ -207,6 +212,8 @@ C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\WebGrease.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\BoardGameClubEntities.pdb
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\BoardGameClubEntities.dll.config
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Antlr3.Runtime.pdb
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\EntityFramework.xml
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\EntityFramework.SqlServer.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.AI.DependencyCollector.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.AI.Web.xml
@@ -243,7 +250,9 @@ C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\SendGrid.SmtpA
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\SendGrid.SmtpApi.dll.config
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Buffers.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Diagnostics.DiagnosticSource.xml
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Net.Http.Extensions.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Net.Http.Formatting.xml
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Net.Http.Primitives.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Text.Encodings.Web.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Web.Http.xml
@@ -255,11 +264,10 @@ C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Web.Raz
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Web.WebPages.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Web.WebPages.Deployment.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\System.Web.WebPages.Razor.xml
-C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\EntityFramework.xml
-C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\EntityFramework.SqlServer.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.AspNet.Identity.Owin.xml
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\obj\Release\BoardGameClub.csproj.App.config
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\obj\Release\BoardGameClub.csprojResolveAssemblyReference.cache
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\obj\Release\BoardGameClub.csproj.CoreCompileInputs.cache
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\obj\Release\BoardGameClub.dll

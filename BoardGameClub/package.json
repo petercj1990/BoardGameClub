@@ -1,5 +1,5 @@
 {
-  "name": "yodawg",
+  "name": "bgdependencies",
   "private": true,
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
@@ -36,5 +36,23 @@
   },
   "engines": {
     "node": ">=0.10.0"
-  }
+  },
+  "description": "This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular) version 0.16.0.",
+  "version": "1.0.0",
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "jasmine-core": "^2.8.0",
+    "karma": "^1.7.1",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-jasmine": "^1.1.0",
+    "phantomjs-prebuilt": "^2.1.15"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }

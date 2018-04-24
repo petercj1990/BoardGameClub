@@ -110,3 +110,4 @@ C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub.Tests\bin\Release\
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub.Tests\bin\Release\Antlr3.Runtime.pdb
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub.Tests\obj\Release\BoardGameClub.Tests.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub.Tests\obj\Release\BoardGameClub.Tests.pdb
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub.Tests\obj\Release\BoardGameClub.Tests.csproj.CopyComplete

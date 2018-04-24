@@ -1,0 +1,212 @@
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="row">
+    </br>
+    <h3 class="col-md-9">Play Sessions</h3>
+    <button class="btn btn-primary col-md-3" ng-click="showForm()">Create Play Session</button>
+      </br>
+    </div>
+    <div class="row">
+      <select ng-show="false" name="filterOptions" id="filterOptions" ng-model="option">
+        <option ng-repeat="option in Filters" value="{{option.id}}">{{option.name}}</option>
+      </select>
+      </br>
+      <div class="col-md-12">
+        <!--Body content-->
+        <table id="classes" class="table table-striped table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Game</th>
+              <th>Play Date</th>
+              <th>Players</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="play in aPlays" >
+              <td ng-click="FinishPlaySession(play.Id)">{{play.BoardGame.Name}}</td>
+              <td ng-click="FinishPlaySession(play.Id)">{{play.DatePlayed}}</td>
+              <td ng-click="FinishPlaySession(play.Id)">
+                <div ng-repeat="player in play.Participants">{{player.Name}}</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="ItemsPerPage"
+            class="pagination-sm" boundary-links="true" num-pages="numPages" ng-change="pageChanged()"></ul>
+        </div>
+      </div>
+  </div>
+</div>
+
+<script type="text/ng-template" id="addPlaySession.html">
+  <div class="modal-header">
+    <h3 class="modal-title">New Play Session</h3>
+  </div>
+  <div class="modal-body">
+    <div id="searchBox">
+      <h4>Players:</h4>
+      <input type="search" class="form-control searchbar" #input id="playerSearchText" list="player-search-list"
+             placeholder="Search for Players" ng-model="playerSearchText" ng-model-options="{debounce: 250}" />
+          <button  ng-class ng-click="searchPlayers(playerSearchText)">Add Player</button>
+    </div>
+    <datalist id="player-search-list" class="datalist scrollable" ng-model="playerSearchText"
+              ng-select="searchPlayers(playerSearch)" style="overflow-y: auto!important">
+      <option ng-repeat="result in playerSearchResponse" value="{{result.Name}}">{{result.Type}}</option>
+    </datalist>
+    </br>
+    <div class="row">
+      <div class="col-2">  </div>
+      <table id="classes" class="table-condensed table-hover col-10">
+        <tbody>
+          <tr ng-repeat="player in players">
+            <td>{{player.Name}}</td>
+            <td><button ng-click="removePlayer(play)" class="btn btn-danger btn-xs"><span class="badge">X</span></button></td>
+          </tr>
+        </tbody>
+      </table>
+      </br>
+      <div ng-show="{{error.Players}}">{{error.Players}}</div>
+    </div>
+  <div class ="row">
+
+    <h4 class="col-sm-3">Date:</h4>
+    <div class="row">
+      <div class="col-md-6">
+        <p class="input-group">
+          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="playDate" is-open="popup1.opened"
+                 datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+          
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+          <div uib-timepicker ng-model="playTime"  hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+        </p>
+      </div>
+      <div ng-show="{{error.Date}}">{{error.Date}}</div>
+    </div>
+  </div>
+  <div class="row">
+    <h4 class="col-sm-3">Game:</h4>
+    <div class="row">
+      <div class="col-md-6">
+       <select class="form-control" ng-options="game.Name for game in GameCollection" ng-model="selectedGame">
+       </select>
+      </div>
+    </div>
+  </div>
+    </br>
+  <div>
+    <div ng-show="(selectedGame.MinPlayer && selectedGame.MaxPlayer)">{{selectedGame.Name}}'s PlayerCount: {{selectedGame.MinPlayer}}-{{selectedGame.MaxPlayer}}</div>
+  </div>
+   </br>
+  <div ng-show="{{error.Game}}">{{error.Game}}</div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  </div>
+</script>
+
+<script type="text/ng-template" id="RecordPlaySession.html">
+  <div class="modal-header">
+    <h3 class="modal-title">Play Session Stats</h3>
+  </div>
+  <div class="modal-body" >
+    <table id="classes" class="table table-hover">
+      <thead>
+        <tr>
+          <th>Game</th>
+          <th>Date Played</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>{{EditPS.BoardGame.Name}}</th>
+          <th>{{EditPS.DatePlayed}}</th>
+
+        </tr>
+      </tbody>
+    </table>
+    </br>
+    </br>
+    <form name="GameResults">
+      <label>Select Winners</label>
+      <div ng-repeat="player in EditPS.Participants">
+        <input type="checkbox"
+        ng-model="player.winner"
+        >{{player.Name}}
+      </div>
+    </form>
+    <ul dnd-list="list">
+
+      <li ng-repeat="item in models.lists"
+          dnd-draggable="item"
+          dnd-moved="list.splice($index, 1)"
+          dnd-effect-allowed="move"
+          dnd-selected="models.selected = item"
+          ng-class="{'selected': models.selected === item}">
+        {{item.label}}
+      </li>
+    </ul>
+
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-danger" ng-click="delete(EditPS.Id)">Delete</button>
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  </div>
+</script>
+
+<script type="text/ng-template" id="RecordedPlaySession.html">
+  <div class="modal-header">
+    <h3 class="modal-title">Play Session Stats</h3>
+  </div>
+  <div class="modal-body">
+    <table id="classes" class="table table-hover">
+      <thead>
+        <tr>
+          <th>Game</th>
+          <th>Date Played</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>{{EditPS.BoardGame.Name}}</th>
+          <th>{{EditPS.DatePlayed}}</th>
+
+        </tr>
+      </tbody>
+    </table>
+    </br>
+    </br>
+    <form name="GameResults">
+      <label>Participants</label>
+      <div ng-repeat="player in EditPS.Participants">
+        <div >{{player.Name}}
+        </div>
+      </div>
+      <label>Winners</label>
+      <div ng-repeat="player in EditPS.Winners">
+        <div>
+          {{player.Name}}
+        </div>
+      </div>
+    </form>
+    <ul dnd-list="list">
+
+      <li ng-repeat="item in models.lists"
+          dnd-draggable="item"
+          dnd-moved="list.splice($index, 1)"
+          dnd-effect-allowed="move"
+          dnd-selected="models.selected = item"
+          ng-class="{'selected': models.selected === item}">
+        {{item.label}}
+      </li>
+    </ul>
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-warning" ng-click="cancel()">Close</button>
+  </div>
+</script>

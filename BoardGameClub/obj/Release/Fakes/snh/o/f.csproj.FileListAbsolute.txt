@@ -1,0 +1,2 @@
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\obj\Release\Fakes\snh\o\f.csprojResolveAssemblyReference.cache
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\obj\Release\Fakes\snh\o\f.csproj.CoreCompileInputs.cache

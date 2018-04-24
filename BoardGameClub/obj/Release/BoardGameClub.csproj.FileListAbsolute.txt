@@ -272,3 +272,4 @@ C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\obj\Release\BoardG
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\obj\Release\BoardGameClub.csproj.CoreCompileInputs.cache
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\obj\Release\BoardGameClub.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\obj\Release\BoardGameClub.pdb
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClub\obj\Release\BoardGameClub.csproj.CopyComplete

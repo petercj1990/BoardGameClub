@@ -11,3 +11,4 @@ C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClubEntities\obj\Releas
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClubEntities\obj\Release\BoardGameClubEntities.dll
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClubEntities\obj\Release\BoardGameClubEntities.pdb
 C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClubEntities\obj\Release\BoardGameClubEntities.csprojResolveAssemblyReference.cache
+C:\Users\pjensen\Documents\GitHub\BoardGameClub\BoardGameClubEntities\obj\Release\BoardGameClubEntities.csproj.CopyComplete
